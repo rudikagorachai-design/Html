@@ -1,0 +1,12 @@
+/* Default style */
+body {
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+}
+
+/* This class is what JavaScript will "toggle" */
+body.dark-mode {
+    background-color: #222;
+    color: white;
+}
