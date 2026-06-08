@@ -1,0 +1,59 @@
+// 1. Smooth Dark Mode / Light Mode Switcher
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+});
+
+// 2. Real-Time D-Day Calculation Engine
+// TIP: If the professor asks you to shift the date on evaluation day, change this string!
+const targetDateStr = "2026-12-31T00:00:00"; 
+
+function updateCountdown() {
+    const targetDate = new Date(targetDateStr).getTime();
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+    const timerElement = document.getElementById('countdown-timer');
+
+    if (difference < 0) {
+        timerElement.innerHTML = "Goal Reached!";
+        return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    // Formats into exactly matching the sleek presentation preview counter format
+    timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// 3. Dynamic Guestbook Submission Logic
+const messageForm = document.getElementById('message-form');
+const messagesContainer = document.getElementById('messages-container');
+
+messageForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('visitor-name');
+    const messageInput = document.getElementById('visitor-message');
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = "user-msg";
+    messageDiv.innerHTML = `<strong>👤 ${nameInput.value}:</strong> ${messageInput.value}`;
+
+    // Inserts the newest message dynamically right at the top
+    messagesContainer.insertBefore(messageDiv, messagesContainer.firstChild);
+
+    nameInput.value = '';
+    messageInput.value = '';
+});
