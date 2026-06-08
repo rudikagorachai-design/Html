@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubika's Space - Portfolio</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Full Page Dark Pink Gradient Background */
+        body {
+            background: linear-gradient(135deg, #881b34 0%, #b83b5e 50%, #6a1b29 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Modern Translucent Section Cards */
+        .section-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header Navigation Menu */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .toggle-btn {
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        /* Profile Layout: Places Text & Picture Side-by-Side neatly */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .intro-text {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Glowing Round Frame for Your Photo */
+        .profile-img-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 190px;
+            height: 190px;
+            object-fit: cover; /* Keeps your portrait sharp without distortions */
+            border-radius: 50%; /* Cuts the image into a perfect circle */
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Generic Section Headings */
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        /* Hobbies Simple List Layout */
+        .hobbies-list {
+            list-style: none;
+        }
+
+        .hobbies-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        /* D-Day Counter Box Layout */
+        .timer-box {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 5px;
+            border-left: 4px solid #ff4a73;
+        }
+
+        .timer {
+            font-size: 1.6rem;
+            font-weight: bold;
+            font-family: monospace;
+            color: #ffb3c1;
+            letter-spacing: 1px;
+        }
+
+        .timer-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 8px;
+        }
+
+        /* Guestbook Form Components */
+        .guestbook-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .guestbook-form textarea,
+        .guestbook-form input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .guestbook-form textarea::placeholder,
+        .guestbook-form input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .guestbook-form textarea {
+            height: 90px;
+            resize: vertical;
+        }
+
+        .guestbook-form textarea:focus,
+        .guestbook-form input[type="text"]:focus {
+            outline: none;
+            border-color: #ffffff;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Submit Interactive Button */
+        .submit-btn {
+            align-self: flex-start;
+            padding: 12px 28px;
+            background-color: #ffffff;
+            color: #b83b5e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #ffb3c1;
+            color: #6a1b29;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header class="section-card">
+            <div class="logo">Rubika's Space</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#hobbies">Hobbies</a></li>
+                    <li><a href="#guestbook">Guestbook</a></li>
+                </ul>
+            </nav>
+            <button class="toggle-btn">☀️ / 🌙 Toggle Mode</button>
+        </header>
+
+        <section id="about" class="section-card">
+            <div class="profile-container">
+                <div class="profile-text">
+                    <h1>Hello, I'm Rubika Gorachan</h1>
+                    <p class="intro-text">
+                        I am a 20-year-old student currently studying at <strong>Seoul Theological University</strong>.<br><br>
+                        Welcome to my final evaluation portfolio. This page showcases my web development and digital literacy progress throughout this semester!
+                    </p>
+                </div>
+                <div class="profile-img-box">
+                    <img class="profile-img" src="Screenshot 2026-06-07 210601.png" alt="Rubika Gorachan Profile">
+                </div>
+            </div>
+        </section>
+
+        <section id="hobbies" class="section-card">
+            <h2>My Favorite Hobbies</h2>
+            <ul class="hobbies-list">
+                <li>🎬 Watching Movies</li>
+                <li>💻 Web Coding</li>
+                <li>📝 Learning Tech</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>Countdown to Target Date</h2>
+            <div class="timer-box">
+                <div class="timer" id="dday-timer">206d 1h 36m 27s</div>
+            </div>
+            <p class="timer-desc">A dynamic real-time evaluation timer built using JavaScript logic.</p>
+        </section>
+
+        <section id="guestbook" class="section-card">
+            <h2>Guestbook</h2>
+            <form class="guestbook-form" onsubmit="event.preventDefault();">
+                <textarea placeholder="Leave a message..."></textarea>
+                <div style="max-width: 320px;">
+                    <input type="text" placeholder="Your Name">
+                </div>
+                <button type="submit" class="submit-btn">Submit Message →</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>© 2026 Rubika Gorachan. All rights reserved.</p>
+            <p>Seoul Theological University | Department of Computer Science</p>
+        </footer>
+    </div>
+
+</body>
+</html>
